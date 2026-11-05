@@ -1,0 +1,12 @@
+# Secrets & local environments (written by the hub UI and by individual projects)
+.env
+!.env.example
+.venv/
+venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+
+# Hub UI runtime data (shared API keys)
+hub/.hub-data/
