@@ -11,6 +11,15 @@ Whether you’re a beginner, practitioner, or researcher, this repo provides res
 
 ---
 
+## 🖥️ Run everything from one web UI
+A local web app in [`hub/`](hub/README.md) lets you browse every project, manage API keys, install dependencies into isolated environments, and launch the Streamlit, Chainlit and Gradio apps and notebooks with one click:
+
+```bash
+cd hub && ./run.sh   # then open http://localhost:8600
+```
+
+---
+
 ## 📬 Stay Updated with Our Newsletter!
 **Get a FREE Data Science eBook** 📖 with 150+ essential lessons in Data Science when you subscribe to our newsletter! Stay in the loop with the latest tutorials, insights, and exclusive resources. [Subscribe now!](https://join.dailydoseofds.com)
 

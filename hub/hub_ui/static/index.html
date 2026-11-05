@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI Engineering Hub</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%234f46e5'/%3E%3Cpath d='M9 22l7-12 7 12z' fill='white'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <button class="icon-btn only-mobile" id="toggle-sidebar" aria-label="Show projects">☰</button>
+    <a class="brand" href="#/">
+      <span class="logo" aria-hidden="true">▲</span>
+      <span>AI Engineering Hub</span>
+    </a>
+    <div class="topbar-right">
+      <span class="pill" id="ollama-pill" title="Ollama server at localhost:11434">Ollama: …</span>
+      <button class="btn ghost" id="open-procs">Running <span class="count" id="proc-count">0</span></button>
+      <button class="btn ghost" id="open-settings">API keys</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" id="sidebar">
+      <div class="search-wrap">
+        <input type="search" id="search" placeholder="Search projects…" autocomplete="off" aria-label="Search projects">
+      </div>
+      <div class="filters" id="tag-filters" role="group" aria-label="Filter by tag"></div>
+      <div class="filters small">
+        <label><input type="checkbox" id="only-apps"> Has web app</label>
+        <label><input type="checkbox" id="only-ready"> Keys configured</label>
+      </div>
+      <nav class="project-list" id="project-list" aria-label="Projects"></nav>
+    </aside>
+
+    <main class="main" id="main">
+      <section class="welcome" id="welcome">
+        <h1>All your AI projects, one place.</h1>
+        <p>Pick a project on the left to read its guide, set API keys, install dependencies into an isolated
+          virtual environment, and launch it — Streamlit, Chainlit, Gradio apps and Jupyter notebooks are
+          started for you on a free port and shown right here.</p>
+        <div class="stats" id="stats"></div>
+        <ol class="steps">
+          <li><b>Set keys</b> once in <em>API keys</em> — they are shared by every project (stored locally in <code>hub/.hub-data/secrets.env</code>).</li>
+          <li><b>Install</b> a project's dependencies with one click (creates <code>&lt;project&gt;/.venv</code>).</li>
+          <li><b>Launch</b> an app and use it embedded, or open it in its own tab.</li>
+        </ol>
+      </section>
+      <section class="detail hidden" id="detail"></section>
+    </main>
+  </div>
+
+  <dialog id="settings-dialog" class="dialog">
+    <form method="dialog" class="dialog-head">
+      <h2>Shared API keys</h2>
+      <button class="icon-btn" aria-label="Close">✕</button>
+    </form>
+    <p class="muted">Applied to every app the hub launches. A project's own <code>.env</code> overrides these.</p>
+    <div id="global-env"></div>
+  </dialog>
+
+  <dialog id="procs-dialog" class="dialog wide">
+    <form method="dialog" class="dialog-head">
+      <h2>Processes</h2>
+      <button class="icon-btn" aria-label="Close">✕</button>
+    </form>
+    <div id="procs-list"></div>
+  </dialog>
+
+  <dialog id="auth-dialog" class="dialog">
+    <form id="auth-form">
+      <h2>Access token</h2>
+      <p class="muted">This hub requires the token printed in the terminal when it started.</p>
+      <input type="password" id="auth-token" required autocomplete="current-password" aria-label="Access token">
+      <p class="error" id="auth-error"></p>
+      <button class="btn primary" type="submit">Unlock</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
